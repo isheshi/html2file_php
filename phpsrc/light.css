@@ -1,0 +1,101 @@
+
+  /* 全局样式 */
+  body {
+    background-color: #667eea;
+    font-family: 'Roboto', Arial, sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* 容器样式 */
+  .container {
+    max-width: 500px;
+    margin: 50px auto;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+  }
+
+  /* 标题样式 */
+  h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+
+  /* 表单样式 */
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+    /* 输入框样式 */
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 16px;
+      font-size: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 4px;
+      outline: none;
+      color: #333;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+    }
+    
+    /* 按钮样式 */
+    .download-button {
+      padding: 16px;
+      background-color: #4CAF50;
+      color: #fff;
+      font-size: 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      width: 100%; /* 调整按钮宽度与输入框一致 */
+    }
+    
+  button:hover {
+    background-color: #45a049;
+  }
+
+  /* 淡入动画效果 */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translate3d(0, -20px, 0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  
+
+    /* 线切换样式表 */
+    #style-switcher {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      z-index: 2;
+    }
+
+    #style-switcher select {
+      padding: 5px;
+      font-size: 14px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 4px;
+      outline: none;
+      color: #333;
+    }

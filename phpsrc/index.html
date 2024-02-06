@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>网页转文件下载 - dafenqi</title>
+  <style>
+  </style>
+  <link id="style-link" rel="stylesheet" href="light.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    .lightbulb {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      font-size: 48px;
+      color: gold;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .lightbulb.dark {
+      color: #888;
+    }
+
+    .lightbulb:hover {
+      transform: scale(1.2);
+    }
+
+    .lightbulb-tooltip {
+      position: fixed;
+      top: 80px;
+      right: 40px;
+      background-color: #f9f9f9;
+      padding: 10px;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .lightbulb:hover + .lightbulb-tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .lightbulb-dialog {
+      animation: dialogAnimation 1s infinite alternate;
+    }
+
+    .lightbulb-dialog:hover .lightbulb {
+      transform: scale(1.2); /* 修改文字缩放效果 */
+    }
+
+    @keyframes dialogAnimation {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.2);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    
+  </style>
+</head>
+<body>
+  <div id="container" class="container">
+    <h1>网页转文件下载</h1>
+    
+    <form id="downloadForm" action="pageTool.php" method="POST">
+      <input type="text" id="domain" name="domain" placeholder="网址">
+  
+      <select id="filetype" name="filetype">
+        <!--<option value="1">网页转Img</option>-->
+        <option value="3">网页转Markdown</option>
+        <!--<option value="3">网页转Word</option>-->
+        <!--<option value="4">网页转Excel</option>-->
+      </select>
+  
+      <button class="download-button" onclick="submitForm()">下载</button>
+    </form>
+  </div>
+
+
+    <div id="style-switcher">
+      <i id="lightbulb-icon" class="fas fa-lightbulb lightbulb" onclick="toggleStyle()"></i>
+      <div class="lightbulb-tooltip">这是灯泡<br>有什么作用<br>点点就知道</div>
+    </div>
+  <script>
+    var lightbulbIcon = document.getElementById('lightbulb-icon');
+    var lightbulbTooltip = document.querySelector('.lightbulb-tooltip');
+
+    lightbulbIcon.addEventListener('mouseenter', function() {
+      lightbulbIcon.classList.add('lightbulb-dialog');
+      lightbulbTooltip.classList.add('lightbulb-dialog');
+    });
+
+    lightbulbIcon.addEventListener('mouseleave', function() {
+      lightbulbIcon.classList.remove('lightbulb-dialog');
+      lightbulbTooltip.classList.remove('lightbulb-dialog');
+    });
+
+    function toggleStyle() {
+      var link = document.getElementById('style-link');
+      var lightbulbIcon = document.getElementById('lightbulb-icon');
+
+      if (link.href.endsWith('light.css')) {
+        link.href = "dark.css";
+        lightbulbIcon.classList.add('dark');
+        setCookie("style", "dark", 7); // 设置Cookie，有效期为7天
+      } else {
+        link.href = "light.css";
+        lightbulbIcon.classList.remove('dark');
+        setCookie("style", "light", 7); // 设置Cookie，有效期为7天
+      }
+    }
+
+    // 从Cookie中获取样式选择
+    function getStyleFromCookie() {
+      var link = document.getElementById('style-link');
+      var style = getCookie("style");
+      if (style === "dark") {
+        link.href = "dark.css";
+        lightbulbIcon.classList.add('dark');
+      } else {
+        link.href = "light.css";
+        lightbulbIcon.classList.remove('dark');
+      }
+    }
+    
+    // 设置Cookie
+    function setCookie(name, value, days) {
+      var expires = "";
+      if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+      }
+      document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    // 获取Cookie
+    function getCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(';');
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1, c.length);
+        }
+        if (c.indexOf(nameEQ) == 0) {
+          return c.substring(nameEQ.length, c.length);
+        }
+      }
+      return null;
+    }
+
+    // 初始化时从Cookie中获取样式选择
+    getStyleFromCookie();
+  </script>
+</body>
+</html>
