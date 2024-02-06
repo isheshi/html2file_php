@@ -1,3 +1,31 @@
+项目是java+php
+
+1. php
+
+先看 [网页转文件下载工具](https://blog.csdn.net/heshihu2019/article/details/135875362)
+
+
+
+![网页转文件下载前端效果](网页转文件下载前端效果.jpg)
+
+2. java
+
+   不用java实现的原因是对java不熟悉，用php更快实现功能
+
+   我在尝试java部署后，网页转markdown和excel没问题，其他报错了也不想浪费时间解决，没必要，
+
+   用php调用了`最实用的功能网页转markdown`，起初用这个为了方便learn把一些好文章copy下来，
+
+   网页转图片，文章稍微长点一大坨未必会看。。。
+
+之后看下面的部署没啥大问题看，如果你是java小白或许需要看这两篇文章：
+
+[Windows和macOS下安装JDK教程](https://javabetter.cn/overview/jdk-install-config.html#_02%E3%80%81windows-%E5%AE%89%E8%A3%85-jdk)
+
+[Maven锦集](https://blog.csdn.net/succing/article/details/127281200)
+
+
+
 [![Build Status](https://travis-ci.org/petterobam/html2file.svg?branch=master)](https://travis-ci.org/petterobam/html2file)
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 [![stable](http://badges.github.io/stability-badges/dist/stable.svg)](http://github.com/badges/stability-badges)
@@ -99,3 +127,6 @@ sh html2file.sh log    #日志查看
 # Star History
 
 [![star-history-20231110](https://raw.githubusercontent.com/petterobam/picture-bucket/main/vs-code/upload/imgsstar-history-20231110.png)](https://star-history.com/#petterobam/html2file&Date)
+
+
+
