@@ -48,12 +48,15 @@ if (empty($rs['status']) || (!empty($rs['status']) && $rs['status'] != 1)) {
 }
 $file = $host.$rs['result'];
 $extension = pathinfo($file, PATHINFO_EXTENSION);
-// // 截取问号之前的部分
-// if (strpos($domain, '?') !== false) {
-//     $domain = strstr($domain, '?', true);
-// }
-// $filename = basename($domain)."_".date("Y-m-d").".".$extension;
 $filename = getWebTitle($domain).".".$extension;
+if (empty($filename){
+    // 截取问号之前的部分
+    if (strpos($domain, '?') !== false) {
+        $domain = strstr($domain, '?', true);
+    }
+    $filename = basename($domain)."_".date("Y-m-d").".".$extension;
+}
+
 
 
 // 设置响应标头
