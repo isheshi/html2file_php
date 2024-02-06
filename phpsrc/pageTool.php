@@ -49,7 +49,7 @@ if (empty($rs['status']) || (!empty($rs['status']) && $rs['status'] != 1)) {
 $file = $host.$rs['result'];
 $extension = pathinfo($file, PATHINFO_EXTENSION);
 $filename = getWebTitle($domain).".".$extension;
-if (empty($filename){
+if (empty($filename)){
     // 截取问号之前的部分
     if (strpos($domain, '?') !== false) {
         $domain = strstr($domain, '?', true);
