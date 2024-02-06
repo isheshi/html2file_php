@@ -9,21 +9,21 @@
 ![网页转文件下载前端效果](网页转文件下载前端效果.jpg)
 
 2. java
+   起初用这个为了方便learn把一些好文章copy下来，不用java实现的原因是对java不熟悉，用php更快实现功能
 
-   不用java实现的原因是对java不熟悉，用php更快实现功能
-
-   我在尝试java部署后，网页转markdown和excel没问题，其他报错了也不想浪费时间解决，没必要，
-
-   用php调用了`最实用的功能网页转markdown`，起初用这个为了方便learn把一些好文章copy下来，
+   当我使用https://github.com/zostudy/html2file/，在尝试java部署mvn clean package后，网页转markdown、word和excel没问题，其他报错了，把test报错行注释掉再mvn clean package
 
    网页转图片，文章稍微长点一大坨未必会看。。。
 
-之后看下面的部署没啥大问题看，如果你是java小白或许需要看这两篇文章：
+之后看下面的部署没啥大问题看，如果你是java小白或许需要看这三篇文章：
 
 [Windows和macOS下安装JDK教程](https://javabetter.cn/overview/jdk-install-config.html#_02%E3%80%81windows-%E5%AE%89%E8%A3%85-jdk)
 
+[搭建第一个Spring Boot项目](https://javabetter.cn/springboot/initializr.html)
+
 [Maven锦集](https://blog.csdn.net/succing/article/details/127281200)
 
+ps：网页转markdown、和网页转word，所以应用实现了这两个功能，前者缺点下载的文章里代码排版会乱，后者不会；后者的缺点是有些不能复制代码的页面，如csdn需要登录才能复制代码，这种文章会下载失败。
 
 
 [![Build Status](https://travis-ci.org/petterobam/html2file.svg?branch=master)](https://travis-ci.org/petterobam/html2file)
