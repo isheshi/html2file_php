@@ -27,6 +27,7 @@
 // result：结果，这里为转化后的文件路径
 // errorMsg：错误信息
 
+    // die("<script>alert('维护中');</script>");
 $fileType = $_POST['filetype'];
 $domain = trim($_POST['domain']);
 if (filter_var($domain, FILTER_VALIDATE_URL) === false) {
@@ -48,14 +49,15 @@ if (empty($rs['status']) || (!empty($rs['status']) && $rs['status'] != 1)) {
 }
 $file = $host.$rs['result'];
 $extension = pathinfo($file, PATHINFO_EXTENSION);
-$filename = getWebTitle($domain).".".$extension;
+$filename = getWebTitle($domain);
 if (empty($filename)){
     // 截取问号之前的部分
     if (strpos($domain, '?') !== false) {
         $domain = strstr($domain, '?', true);
     }
-    $filename = basename($domain)."_".date("Y-m-d").".".$extension;
+    $filename = basename($domain)."_".date("Y-m-d");
 }
+$filename .= ".".$extension;
 
 
 
@@ -79,7 +81,7 @@ function curl($url, $params = null, $timeout = 8)
     $ch = curl_init(); // 初始化curl并设置链接
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
-    
+
     // 设置请求头
     $headers = [
         'Content-Type: application/json',
@@ -125,7 +127,7 @@ function getWebTitle($url){
     // 禁用错误报告，避免因为 HTML 结构问题导致的错误信息输出
     libxml_use_internal_errors(true);
     // 加载 HTML 内容到 DOMDocument 对象
-    $dom->loadHTML($html);
+    $dom->loadHTML('<?xml encoding="UTF-8">' . $html);
     // 恢复错误报告
     libxml_use_internal_errors(false);
     // 获取标题元素
