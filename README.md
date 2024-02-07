@@ -11,7 +11,7 @@
 2. java
    起初用这个为了方便learn把一些好文章copy下来，不用java实现的原因是对java不熟悉，用php更快实现功能
 
-   当我使用https://github.com/zostudy/html2file/，在尝试java部署mvn clean package后，网页转markdown、word和excel没问题，其他报错了，把test报错行注释掉再mvn clean package
+   当我尝试java部署mvn clean package后，网页转markdown、word和excel没问题，其他报错了，把test报错行注释掉再mvn clean package
 
    网页转图片，文章稍微长点一大坨未必会看。。。
 
