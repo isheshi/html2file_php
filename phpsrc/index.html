@@ -66,103 +66,104 @@
         transform: scale(1);
       }
     }
-    
+
   </style>
 </head>
 <body>
-  <div id="container" class="container">
-    <h1>网页转文件下载</h1>
-    
-    <form id="downloadForm" action="pageTool.php" method="POST">
-      <input type="text" id="domain" name="domain" placeholder="网址">
-  
-      <select id="filetype" name="filetype">
-        <!--<option value="1">网页转Img</option>-->
-        <option value="3">网页转Markdown</option>
-        <!--<option value="3">网页转Word</option>-->
-        <!--<option value="4">网页转Excel</option>-->
-      </select>
-  
-      <button class="download-button" onclick="submitForm()">下载</button>
-    </form>
-  </div>
+<div id="container" class="container">
+  <h1>网页转文件下载</h1>
+
+  <form id="downloadForm" action="pageTool.php" method="POST">
+    <input type="text" id="domain" name="domain" placeholder="网址">
+
+    <select id="filetype" name="filetype">
+      <option value="3">网页转Markdown</option>
+      <!--<option value="1">网页转Img</option>-->
+      <!--<option value="2">网页转Pdf</option>-->
+      <option value="4">网页转Word</option>
+      <!--<option value="5">网页转Excel</option>-->
+    </select>
+
+    <button class="download-button" onclick="submitForm()">下载</button>
+  </form>
+</div>
 
 
-    <div id="style-switcher">
-      <i id="lightbulb-icon" class="fas fa-lightbulb lightbulb" onclick="toggleStyle()"></i>
-      <div class="lightbulb-tooltip">这是灯泡<br>有什么作用<br>点点就知道</div>
-    </div>
-  <script>
+<div id="style-switcher">
+  <i id="lightbulb-icon" class="fas fa-lightbulb lightbulb" onclick="toggleStyle()"></i>
+  <div class="lightbulb-tooltip">这是灯泡<br>有什么作用<br>点点就知道</div>
+</div>
+<script>
+  var lightbulbIcon = document.getElementById('lightbulb-icon');
+  var lightbulbTooltip = document.querySelector('.lightbulb-tooltip');
+
+  lightbulbIcon.addEventListener('mouseenter', function() {
+    lightbulbIcon.classList.add('lightbulb-dialog');
+    lightbulbTooltip.classList.add('lightbulb-dialog');
+  });
+
+  lightbulbIcon.addEventListener('mouseleave', function() {
+    lightbulbIcon.classList.remove('lightbulb-dialog');
+    lightbulbTooltip.classList.remove('lightbulb-dialog');
+  });
+
+  function toggleStyle() {
+    var link = document.getElementById('style-link');
     var lightbulbIcon = document.getElementById('lightbulb-icon');
-    var lightbulbTooltip = document.querySelector('.lightbulb-tooltip');
 
-    lightbulbIcon.addEventListener('mouseenter', function() {
-      lightbulbIcon.classList.add('lightbulb-dialog');
-      lightbulbTooltip.classList.add('lightbulb-dialog');
-    });
+    if (link.href.endsWith('light.css')) {
+      link.href = "dark.css";
+      lightbulbIcon.classList.add('dark');
+      setCookie("style", "dark", 7); // 设置Cookie，有效期为7天
+    } else {
+      link.href = "light.css";
+      lightbulbIcon.classList.remove('dark');
+      setCookie("style", "light", 7); // 设置Cookie，有效期为7天
+    }
+  }
 
-    lightbulbIcon.addEventListener('mouseleave', function() {
-      lightbulbIcon.classList.remove('lightbulb-dialog');
-      lightbulbTooltip.classList.remove('lightbulb-dialog');
-    });
+  // 从Cookie中获取样式选择
+  function getStyleFromCookie() {
+    var link = document.getElementById('style-link');
+    var style = getCookie("style");
+    if (style === "dark") {
+      link.href = "dark.css";
+      lightbulbIcon.classList.add('dark');
+    } else {
+      link.href = "light.css";
+      lightbulbIcon.classList.remove('dark');
+    }
+  }
 
-    function toggleStyle() {
-      var link = document.getElementById('style-link');
-      var lightbulbIcon = document.getElementById('lightbulb-icon');
+  // 设置Cookie
+  function setCookie(name, value, days) {
+    var expires = "";
+    if (days) {
+      var date = new Date();
+      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+      expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+  }
 
-      if (link.href.endsWith('light.css')) {
-        link.href = "dark.css";
-        lightbulbIcon.classList.add('dark');
-        setCookie("style", "dark", 7); // 设置Cookie，有效期为7天
-      } else {
-        link.href = "light.css";
-        lightbulbIcon.classList.remove('dark');
-        setCookie("style", "light", 7); // 设置Cookie，有效期为7天
+  // 获取Cookie
+  function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1, c.length);
+      }
+      if (c.indexOf(nameEQ) == 0) {
+        return c.substring(nameEQ.length, c.length);
       }
     }
+    return null;
+  }
 
-    // 从Cookie中获取样式选择
-    function getStyleFromCookie() {
-      var link = document.getElementById('style-link');
-      var style = getCookie("style");
-      if (style === "dark") {
-        link.href = "dark.css";
-        lightbulbIcon.classList.add('dark');
-      } else {
-        link.href = "light.css";
-        lightbulbIcon.classList.remove('dark');
-      }
-    }
-    
-    // 设置Cookie
-    function setCookie(name, value, days) {
-      var expires = "";
-      if (days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        expires = "; expires=" + date.toUTCString();
-      }
-      document.cookie = name + "=" + (value || "") + expires + "; path=/";
-    }
-
-    // 获取Cookie
-    function getCookie(name) {
-      var nameEQ = name + "=";
-      var ca = document.cookie.split(';');
-      for (var i = 0; i < ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-          c = c.substring(1, c.length);
-        }
-        if (c.indexOf(nameEQ) == 0) {
-          return c.substring(nameEQ.length, c.length);
-        }
-      }
-      return null;
-    }
-
-    // 初始化时从Cookie中获取样式选择
-    getStyleFromCookie();
-  </script>
+  // 初始化时从Cookie中获取样式选择
+  getStyleFromCookie();
+</script>
 </body>
 </html>
