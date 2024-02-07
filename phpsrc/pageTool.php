@@ -60,7 +60,6 @@ if (empty($filename)){
 $filename .= ".".$extension;
 
 
-
 // 设置响应标头
 header('Content-Description: File Download');
 header('Content-Type: application/octet-stream');
