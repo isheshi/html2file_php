@@ -23,7 +23,7 @@
 
 [Maven锦集](https://blog.csdn.net/succing/article/details/127281200)
 
-ps：网页转markdown、和网页转word，所以应用实现了这两个功能，前者缺点下载的文章里代码排版会乱，后者不会；后者的缺点是有些不能复制代码的页面，如csdn需要登录才能复制代码，这种文章会下载失败。
+ps：网页转markdown、和网页转word，这两个功能，前者缺点下载的文章里代码排版会乱，后者不会；后者的缺点是有些不能复制代码的页面，如csdn需要登录才能复制代码，这种文章会下载失败。
 
 
 [![Build Status](https://travis-ci.org/petterobam/html2file.svg?branch=master)](https://travis-ci.org/petterobam/html2file)
